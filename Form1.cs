@@ -90,23 +90,39 @@ namespace FileRenamer
             tabPage1.Controls.Clear();
             if (folderName != null)
             {   
+                int count = fileList.Count;
+                var dirs = Directory.GetDirectories(folderName);
+                count += dirs.Length;
                 ListView list = new ListView();
                 list.View = View.Details;
                 list.GridLines = true;
-                string[] dateCreated = new string[fileList.Count];
-                string[] dateModified = new string[fileList.Count];
-                double[] fileSize = new double[fileList.Count];
-                string[] fileSizeConv = new string[fileList.Count];
+                string[] dateCreated = new string[count];
+                string[] dateModified = new string[count];
+                double[] fileSize = new double[count];
+                string[] fileSizeConv = new string[count];
                 var txtFiles = Directory.EnumerateFiles(folderName);
+                List<string> allFiles = txtFiles.ToList();
+                allFiles.AddRange(dirs);
                 double totalSize = 0;
                 int index = 0;
-                foreach (var fileName in txtFiles)
+                foreach (var fileName in allFiles)
                 {
                    var fi = new FileInfo(fileName);
-                   dateCreated[index] = fi.CreationTime.ToString();
-                   dateModified[index] = fi.LastWriteTime.ToString();
-                   fileSize[index] = fi.Length;
-                   totalSize += fi.Length;
+                    if(fi.Exists)
+                    {
+                        dateCreated[index] = fi.CreationTime.ToString();
+                        dateModified[index] = fi.LastWriteTime.ToString();
+                        fileSize[index] = fi.Length;
+                        totalSize += fi.Length;
+                    }
+                   var di = new DirectoryInfo(fileName);
+                    if(di.Exists)
+                    {
+                        dateCreated[index] = di.CreationTime.ToString();
+                        dateModified[index] = di.LastWriteTime.ToString();
+                        fileSize[index] = GetDirectorySize(di);
+                        totalSize += GetDirectorySize(di);
+                    }
                    index++;
 
                 }
@@ -118,7 +134,9 @@ namespace FileRenamer
                     fileSize[c] = mbCon;
                     fileSizeConv[c] = $"{mbCon:n0} KB";
                 }
-                string[] files = txtFiles.ToArray();
+                string[] files = allFiles.ToArray();
+                
+              
                 List<ListViewItem> name = new List<ListViewItem>();
                 for (int i = 0; i < index; i++)
                 {
@@ -148,11 +166,19 @@ namespace FileRenamer
                 var driveInfo = DriveInfo.GetDrives().Where(d=> d.Name.Contains(directory.Replace("\\","").ToString()));
                 double byt2 = driveInfo.First().TotalSize;
                 long bytSize2 = (long)byt2;
+
                 double rootSize = Math.Round(ConvertBytesToMegabytes(bytSize2) / 1024f);
                 string rootName = directory.Replace("\\", "");
                 toolStripStatusLabel.Text = $"{rootName} {mbCo1}/{rootSize} GB ";
            
             }
+        }
+
+
+        private static long GetDirectorySize(DirectoryInfo folderPath)
+        {
+           
+            return folderPath.EnumerateFiles("*", SearchOption.AllDirectories).Sum(fi => fi.Length);
         }
 
         private void GetParentDrive()
