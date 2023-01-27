@@ -275,7 +275,7 @@ namespace FileRenamer
 
         private void AttemptUnlock(object sender, EventArgs e)
         {
-
+            Debug.WriteLine("unlocking");
         }
 
         private void SetState(object sender, EventArgs e)
