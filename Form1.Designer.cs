@@ -98,11 +98,11 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Location = new System.Drawing.Point(3, 102);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(3, 48);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1282, 317);
+            this.tabControl1.Size = new System.Drawing.Size(1282, 399);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -110,7 +110,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1274, 289);
+            this.tabPage1.Size = new System.Drawing.Size(1274, 371);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "File List";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -123,7 +123,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1274, 289);
+            this.tabPage2.Size = new System.Drawing.Size(1274, 371);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Rename Files";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@
             // 
             this.panel4.Controls.Add(this.button1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(3, 255);
+            this.panel4.Location = new System.Drawing.Point(3, 337);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1268, 31);
             this.panel4.TabIndex = 3;
@@ -191,6 +191,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radioButton1.Enabled = false;
             this.radioButton1.Location = new System.Drawing.Point(0, 0);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(68, 21);
@@ -205,7 +206,7 @@
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1274, 289);
+            this.tabPage3.Size = new System.Drawing.Size(1274, 371);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Sort Files";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -222,10 +223,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.AutoSize = true;
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(3, 43);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1282, 59);
+            this.groupBox2.Size = new System.Drawing.Size(1282, 5);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "File Extensions Detected";
@@ -279,7 +281,7 @@
             this.Controls.Add(this.panel1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Folder Explorer";
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

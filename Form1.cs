@@ -281,6 +281,7 @@ namespace FileRenamer
             flowLayoutPanel.Name = "FlowPanel";
             flowLayoutPanel.Dock = DockStyle.Top;
             flowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
+            flowLayoutPanel.AutoScroll = true;
             foreach (string type in exts)
             {
                 CheckBox cb = new CheckBox();
@@ -293,6 +294,7 @@ namespace FileRenamer
                 cb.CheckedChanged += (s, e) => UpdateFilterSelection(cb, e);
             }
             groupBox2.Controls.Add(flowLayoutPanel);
+            groupBox2.Text = $"{exts.Count} File Extensions Detected";
             foreach (Control control in groupBox2.Controls)
             {
                 Debug.WriteLine(control.Name);
